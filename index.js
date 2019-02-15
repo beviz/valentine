@@ -40,15 +40,14 @@ window.onload = function() {
     manifesto.innerText = res.data.manifesto;
   };
 
-  // axios
-  //   .get("/ido/xx.json")
-  //   .then(function(res) {
-  //     if (!res || res.status < 200 || res.status >= 300 || !res.data) {
-  //       throw "error";
-  //     }
-  //     onSuccess(res);
-  //   })
-  //   .catch(catchError);
-
-  onSuccess({ data: { when, manifesto: "这是一条宣言" } });
+  var hostArr = window.location.host.split(".");
+  axios
+    .get(`/ido/${hostArr[0]}.json`)
+    .then(function(res) {
+      if (!res || res.status < 200 || res.status >= 300 || !res.data) {
+        throw "error";
+      }
+      onSuccess(res);
+    })
+    .catch(catchError);
 };

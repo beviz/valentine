@@ -6374,17 +6374,13 @@ window.onload = function () {
     manifesto.innerText = res.data.manifesto;
   };
 
-  // axios
-  //   .get("/ido/xx.json")
-  //   .then(function(res) {
-  //     if (!res || res.status < 200 || res.status >= 300 || !res.data) {
-  //       throw "error";
-  //     }
-  //     onSuccess(res);
-  //   })
-  //   .catch(catchError);
-
-  onSuccess({ data: { when: when, manifesto: "这是一条宣言" } });
+  var hostArr = window.location.host.split(".");
+  axios.get("/ido/" + hostArr[0] + ".json").then(function (res) {
+    if (!res || res.status < 200 || res.status >= 300 || !res.data) {
+      throw "error";
+    }
+    onSuccess(res);
+  }).catch(catchError);
 };
 },{"moment":"node_modules/moment/moment.js","axios":"node_modules/axios/index.js"}],"../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -6415,7 +6411,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '55720' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '54908' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
