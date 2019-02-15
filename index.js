@@ -1,7 +1,12 @@
 var moment = require("moment");
 var axios = require("axios");
+var punycode = require("punycode");
 
 window.onload = function() {
+  var hostArr = window.location.host.split(".");
+  const host = punycode.toUnicode(window.location.host).split(".");
+  if (host.length > 1) document.title = `${host[0]}  ${host[1]}`;
+
   var when = "2017-02-14T13:57:07.631Z";
   var computeTime = function() {
     var formated = "YYYY-MM-DD HH:mm:ss";
@@ -40,7 +45,6 @@ window.onload = function() {
     manifesto.innerText = res.data.manifesto;
   };
 
-  var hostArr = window.location.host.split(".");
   axios
     .get(`/ido/${hostArr[0]}.json`)
     .then(function(res) {
@@ -50,4 +54,5 @@ window.onload = function() {
       onSuccess(res);
     })
     .catch(catchError);
+  // onSuccess({ data: { when: "2018-1-1" } });
 };
