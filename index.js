@@ -4,8 +4,8 @@ var punycode = require("punycode");
 
 window.onload = function() {
   var hostArr = window.location.host.split(".");
-  const host = punycode.toUnicode(window.location.host).split(".");
-  if (host.length > 1) document.title = `${host[0]}  ${host[1]}`;
+  const host = punycode.toUnicode(window.location.host);
+  if (host.length > 1) document.title = host;
 
   var when = "2017-02-14T13:57:07.631Z";
   var computeTime = function() {
