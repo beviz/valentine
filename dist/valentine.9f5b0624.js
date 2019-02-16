@@ -6895,10 +6895,10 @@ window.onload = function () {
     var m = duration.minutes();
     var s = duration.seconds();
     // document.querySelector(".year").innerText = y;
-    document.querySelector(".day").innerText = d;
-    document.querySelector(".hour").innerText = h;
-    document.querySelector(".minute").innerText = m;
-    document.querySelector(".second").innerText = s;
+    document.querySelector(".day").innerText = d < 10 ? "0" + d : d;
+    document.querySelector(".hour").innerText = h < 10 ? "0" + h : h;
+    document.querySelector(".minute").innerText = m < 10 ? "0" + m : m;
+    document.querySelector(".second").innerText = s < 10 ? "0" + s : s;
     requestAnimationFrame(computeTime);
   };
 
@@ -6914,6 +6914,10 @@ window.onload = function () {
     var manifesto = document.querySelector(".manifesto");
     manifesto.style.display = "block";
     manifesto.innerText = res.data.manifesto;
+
+    if (res.data.from) {
+      document.querySelector(".info span").innerText = res.data.from;
+    }
   };
 
   axios.get("/ido/" + hostArr[0] + ".json").then(function (res) {
@@ -6953,7 +6957,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '52372' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51605' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
